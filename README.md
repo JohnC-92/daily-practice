@@ -6,7 +6,7 @@ A minimal, fast Next.js app that pulls public Google Sheets (CSV) into a focused
 - Two decks (LeetCode + System Design)
 - Weighted random selection by confidence (red/yellow/green)
 - Notes hidden until reveal
-- Client cache + optional server proxy to handle CORS
+- Client cache for fast reloads
 
 ## Google Sheets: publish to CSV
 1) In Google Sheets: `File` → `Share` → `Publish to the web`.
@@ -65,5 +65,5 @@ Deploy to Vercel or any Next.js-compatible host. Provide the same env vars in th
 - `Description`
 
 ## Notes
-- If browser CORS blocks direct CSV access, the app falls back to `/api/csv-proxy?url=...`.
-- The proxy only allows `docs.google.com/spreadsheets` URLs to avoid SSRF..
+- GitHub Pages is static-only, so server-side CSV proxying is not available.
+- If browser CORS blocks direct CSV access, use the local file upload button instead.

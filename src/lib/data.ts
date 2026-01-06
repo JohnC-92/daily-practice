@@ -25,15 +25,6 @@ async function fetchCsvText(url: string): Promise<string> {
   return response.text();
 }
 
-async function fetchCsvTextWithFallback(url: string): Promise<string> {
-  try {
-    return await fetchCsvText(url);
-  } catch {
-    const proxyUrl = `/api/csv-proxy?url=${encodeURIComponent(url)}`;
-    return fetchCsvText(proxyUrl);
-  }
-}
-
 export async function loadDeck(deck: DeckName): Promise<Card[]> {
   const memory = getMemoryCache<Card[]>(getCacheKey(deck));
   if (memory) {
@@ -51,7 +42,7 @@ export async function loadDeck(deck: DeckName): Promise<Card[]> {
     throw new Error("Missing CSV URL env var.");
   }
 
-  const csvText = await fetchCsvTextWithFallback(url);
+  const csvText = await fetchCsvText(url);
   const { rows } = parseCsv(csvText);
   const cards = deckMapperMap[deck](rows);
 
