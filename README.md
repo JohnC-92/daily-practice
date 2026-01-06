@@ -33,6 +33,16 @@ npm run dev
 ```
 
 ## Deploy
+### GitHub Pages
+1) Push to GitHub.
+2) In repo settings, enable Pages with source `GitHub Actions`.
+3) Add repository secrets:
+   - `NEXT_PUBLIC_LC_CSV_URL`
+   - `NEXT_PUBLIC_SD_CSV_URL`
+4) The site will deploy to:
+   - `https://<your-username>.github.io/daily-practice/`
+
+### Other hosts
 Deploy to Vercel or any Next.js-compatible host. Provide the same env vars in the deployment settings.
 
 ## CSV schema
