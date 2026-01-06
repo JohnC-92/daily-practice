@@ -100,10 +100,10 @@ export function mapSystemDesignRows(
   rows: Record<string, string | undefined>[]
 ): Card[] {
   return rows
-    .map((row, index) => {
+    .flatMap((row, index) => {
       const title = normalize(row["System Question"]);
       if (!title) {
-        return null;
+        return [];
       }
       const status = normalizeStatus(row["Familiarity"]);
       const id = hashString(`${title}-${index}`);
@@ -116,14 +116,15 @@ export function mapSystemDesignRows(
       }));
       const sections = keyPointSections.filter((section) => section.value);
 
-      return {
-        id,
-        deck: "system_design" as DeckName,
-        status,
-        title,
-        description,
-        notes: { sections },
-      };
-    })
-    .filter((card): card is Card => Boolean(card));
+      return [
+        {
+          id,
+          deck: "system_design" as DeckName,
+          status,
+          title,
+          description,
+          notes: { sections },
+        },
+      ];
+    });
 }
