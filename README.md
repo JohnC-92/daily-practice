@@ -66,4 +66,4 @@ Deploy to Vercel or any Next.js-compatible host. Provide the same env vars in th
 
 ## Notes
 - If browser CORS blocks direct CSV access, the app falls back to `/api/csv-proxy?url=...`.
-- The proxy only allows `docs.google.com/spreadsheets` URLs to avoid SSRF.
+- The proxy only allows `docs.google.com/spreadsheets` URLs to avoid SSRF..
